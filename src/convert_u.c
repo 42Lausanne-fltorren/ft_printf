@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 17:44:14 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/20 19:00:20 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:13:03 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*convert_u(t_flags flags, va_list *args)
 	int				i;
 	unsigned int	n;
 
+	(void) flags;
 	n = va_arg(*args, unsigned int);
 	arg = ft_calloc(get_digits(n) + 1, sizeof(char));
 	if (arg == NULL)
