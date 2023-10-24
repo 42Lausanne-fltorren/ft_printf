@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:17:34 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/21 15:26:52 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:26:33 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	isflag(char c)
 t_flags	get_flag(char **format)
 {
 	t_flags	flag;
-	size_t	i;
+	// size_t	i;
 
 	flag = (t_flags){0, 0, 0, 0, 0, 0, 0, '\0'};
 	while (isflag(**format))

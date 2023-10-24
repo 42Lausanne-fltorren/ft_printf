@@ -38,8 +38,10 @@ clean:
 fclean:				clean
 					make -C $(LIBFT_PATH) fclean
 					$(RM) $(NAME)
-					rm -f *.so
-					rm -f *.a
+					rm -f libft.so
+					rm -f libftprintf.so
+					rm -f libftprintf.a
+					rm -f libft.a
 
 re:					fclean all
 
@@ -50,7 +52,7 @@ so:		all
 
 test:				${OUT_DIR}
 					make -C $(LIBFT_PATH) bonus so
-					gcc src/*c test/*.c -I includes -I libft/ -I . -L libft -fPIC -lft -Wl,-rpath=libft/ -o build/test -g
+					gcc src/*.c test/*.c -I includes -I libft/ -I . -L libft -fPIC -lft -Wl,-rpath=libft/ -o build/test -g
 					./build/test
 
 retest:				fclean test
