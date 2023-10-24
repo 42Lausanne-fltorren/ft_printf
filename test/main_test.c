@@ -6,25 +6,34 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:48:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/21 15:45:50 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:53:26 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
 
 // Function to test the "%c" format
 void	test_c(void)
 {
-	printf("============== TEST_C ==============\n");
-	ft_printf("ft_printf: Test %%c: %c\n", 'c');
-	printf("printf: Test %%c: %c\n", 'c');
+	printf(ANSI_COLOR_RESET"============== TEST_C ==============\n");
+	int a = ft_printf("Test %%c: %c\n", 'c');
+	int b = printf("Test %%c: %c\n", 'c');
+	if (a != b)
+		printf(ANSI_COLOR_RED"ERROR: ft_printf: %d, printf: %d\n", a, b);
 }
 
 void	test_s(void)
 {
-	printf("============== TEST_S ==============\n");
+	printf(ANSI_COLOR_RESET"============== TEST_S ==============\n");
 	ft_printf("ft_printf: %s, %s, %s\n", "Hello World!", (char *) NULL, "");
 	printf("printf: %s, %s, %s\n", "Hello World!", (char *) NULL, "");
 }
