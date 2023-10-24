@@ -20,7 +20,7 @@ all:				$(NAME)
 $(OBJS): $(OUT_DIR)/%.o: $(SRC_DIR)/%.c
 					mkdir -p $(@D)
 					@echo "Compiling $<"
-					$(CC) $(CFLAGS) -Iincludes -Ilibft -c $< -o $@
+					$(CC) $(CFLAGS) -Iincludes -c $< -o $@
 
 bonus:				all
 
@@ -42,6 +42,7 @@ fclean:				clean
 					rm -f libftprintf.so
 					rm -f libftprintf.a
 					rm -f libft.a
+					rm -f test.out
 
 re:					fclean all
 
