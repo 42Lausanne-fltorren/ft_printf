@@ -7,7 +7,7 @@ ARFLAGS 		=	rcs
 RM				=	rm -rf
 
 OUT_DIR			=	build
-SRCS			=	ft_printf.c ft_args.c ft_str_insert.c ft_convert.c
+SRCS			=	ft_printf.c ft_args.c ft_str_insert.c ft_convert.c convert_c.c convert_id.c convert_p.c convert_s.c convert_u.c convert_upx.c convert_x.c hex_convert.c
 SRC_DIR			=	./src
 OBJS			=	$(SRCS:%.c=$(OUT_DIR)/%.o)
 
@@ -29,7 +29,7 @@ $(NAME):			$(LIBFT) $(OBJS)
 
 $(LIBFT):
 					make -C $(LIBFT_PATH) bonus
-					cp	$(LIBFT) .
+					cp	$(LIBFT) ./$(NAME)
 
 clean:
 					make -C $(LIBFT_PATH) clean

@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:53 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/21 15:18:34 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:09:59 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_printf(const char *format, ...);
 
 size_t	count_args(const char *format);
 t_flags	*get_flags(const char *format);
-t_flags	get_flag(char **format);
+t_flags	get_flag(char *format, int *i);
 
 char	*str_slice(char *str, size_t start, size_t end);
 char	*str_insert(char *str, char *insert, size_t pos);

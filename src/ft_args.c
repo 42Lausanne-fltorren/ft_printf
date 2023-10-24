@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:17:34 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/24 11:26:33 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:10:34 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,30 @@ int	isflag(char c)
 	return (0);
 }
 
-t_flags	get_flag(char **format)
+t_flags	get_flag(char *format, int *i)
 {
 	t_flags	flag;
-	// size_t	i;
 
 	flag = (t_flags){0, 0, 0, 0, 0, 0, 0, '\0'};
-	while (isflag(**format))
+	while (isflag(format[*i]))
 	{
-		if (**format == '-')
+		if (format[*i] == '-')
 			flag.minus = 1;
-		else if (**format == '0')
+		else if (format[*i] == '0')
 			flag.zero = 1;
-		else if (**format == '.')
+		else if (format[*i] == '.')
 			flag.precision = 1;
-		else if (**format == '#')
+		else if (format[*i] == '#')
 			flag.alternate = 1;
-		else if (**format == ' ')
+		else if (format[*i] == ' ')
 			flag.space = 1;
-		else if (**format == '+')
+		else if (format[*i] == '+')
 			flag.plus = 1;
-		(*format)++;
+		(*i)++;
 	}
 	// flag.width = ft_atoi(format);
-	flag.type = **format;
-	(*format)++;
+	flag.type = format[*i];
+	(*i)++;
 
 	return (flag);
 }
