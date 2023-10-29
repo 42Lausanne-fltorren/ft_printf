@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/29 23:24:26 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/29 23:28:52 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ int	ft_printf(const char *format, ...)
 	return (len + i);
 }
 
-#include <stdio.h>
+/*#include <stdio.h>
 int	main(void)
 {
-	int len = ft_printf("%c", '0');
-	int rlen = printf("%c", '0');
+	int len = ft_printf(" %c %c %c ", '0', 0, '0');
+	int rlen = printf(" %c %c %c ", '0', 0, '0');
 	printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/29 23:24:54 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/29 23:28:30 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	ft_put_char(va_list args)
 	char	c;
 
 	c = va_arg(args, int);
-	if (c == '\0')
-		return (-1);
 	write(1, &c, 1);
 	return (0);
 }
