@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:48:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/24 13:53:26 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:56:24 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 void	test_c(void)
 {
 	printf(ANSI_COLOR_RESET"============== TEST_C ==============\n");
-	int a = ft_printf("Test %%c: %c\n", 'c');
-	int b = printf("Test %%c: %c\n", 'c');
+	int a = ft_printf(" %c %c %c ", '0', 0, '1');
+	int b = printf(" %c %c %c ", '0', 0, '1');
 	if (a != b)
 		printf(ANSI_COLOR_RED"ERROR: ft_printf: %d, printf: %d\n", a, b);
 }
