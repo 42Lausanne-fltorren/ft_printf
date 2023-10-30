@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/29 23:28:52 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:41:44 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_put_type(va_list args, const char *format, int i)
 		return (ft_put_uint(args));
 	else if (format[i] == 'x' || format[i] == 'X')
 		return (ft_put_hex(args, format[i]));
+	else if (format[i] == 'p')
+		return (ft_put_ptr(args));
 	else if (format[i] == '%')
 	{
 		write(1, "%", 1);
@@ -59,8 +61,8 @@ int	ft_printf(const char *format, ...)
 /*#include <stdio.h>
 int	main(void)
 {
-	int len = ft_printf(" %c %c %c ", '0', 0, '0');
-	int rlen = printf(" %c %c %c ", '0', 0, '0');
+	int len = ft_printf(" %p %p %p ", -1, NULL, 10);
+	int rlen = printf(" %p %p %p ", -1, NULL, 10);
 	printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
 }*/

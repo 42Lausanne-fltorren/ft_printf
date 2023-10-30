@@ -1,41 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_converters.c                                    :+:      :+:    :+:   */
+/*   ft_nb_converters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/29 23:28:30 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:40:39 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_put_char(va_list args)
-{
-	char	c;
-
-	c = va_arg(args, int);
-	write(1, &c, 1);
-	return (0);
-}
-
-int	ft_put_str(va_list args)
-{
-	char	*str;
-	int		len;
-
-	str = va_arg(args, char *);
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (5);
-	}
-	len = ft_strlen(str);
-	write(1, str, len);
-	return (len - 1);
-}
 
 int	ft_put_int(va_list args)
 {
@@ -80,12 +55,31 @@ int	ft_put_hex(va_list args, char type)
 	len = ft_strlen(str);
 	if (type == 'X')
 		ft_strtoupper(str);
-	if (type == 'p')
-	{
-		write(1, "0x", 2);
-		len += 2;
-	}
 	write(1, str, len);
 	free(str);
 	return (len - 1);
+}
+
+int	ft_put_ptr(va_list args)
+{
+	uintptr_t	n;
+	void		*ptr;
+	char		*str;
+	int			len;
+
+	ptr = va_arg(args, void *);
+	if (!ptr)
+	{
+		write(1, "(nil)", 5);
+		return (4);
+	}
+	n = (uintptr_t) ptr;
+	str = ft_itoa_base(n, "0123456789abcdef");
+	if (!str)
+		return (-1);
+	len = ft_strlen(str);
+	write(1, "0x", 2);
+	write(1, str, len);
+	free(str);
+	return (len + 1);
 }
