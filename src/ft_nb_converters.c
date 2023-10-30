@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/30 14:58:02 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:20:30 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	ft_put_uint(va_list args)
 
 int	ft_put_hex(va_list args, char type)
 {
-	unsigned long	n;
+	unsigned int	n;
 	int				len;
 	char			*str;
 
-	n = va_arg(args, unsigned long);
+	n = va_arg(args, unsigned int);
 	str = ft_itoa_base(n, "0123456789abcdef");
 	if (!str)
 		return (-1);
