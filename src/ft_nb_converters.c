@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/30 14:40:39 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:58:02 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ int	ft_put_ptr(va_list args)
 	int			len;
 
 	ptr = va_arg(args, void *);
-	if (!ptr)
-	{
-		write(1, "(nil)", 5);
-		return (4);
-	}
 	n = (uintptr_t) ptr;
 	str = ft_itoa_base(n, "0123456789abcdef");
 	if (!str)
