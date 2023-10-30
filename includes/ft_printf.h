@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:53 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/30 14:09:03 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:48:04 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_put_uint(va_list args);
 int		ft_put_hex(va_list args, char type);
 int		ft_put_ptr(va_list args);
 
-size_t	ft_get_digits(unsigned int n, int base);
+size_t	ft_get_digits(unsigned long n, int base);
 char	*ft_itoau(unsigned int n);
 char	*ft_itoa_base(unsigned long n, char *base);
 char	*ft_strtoupper(char *str);

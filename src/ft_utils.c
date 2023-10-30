@@ -6,13 +6,13 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:28:37 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/29 23:11:13 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:47:55 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_get_digits(unsigned int n, int base)
+size_t	ft_get_digits(unsigned long n, int base)
 {
 	size_t	i;
 
