@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/01 15:04:38 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:10:47 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_put_type(va_list args, const char *format, int i, t_flags flags)
 	else if (format[i] == '%')
 	{
 		write(1, "%", 1);
-		return (0);
+		return (1);
 	}
 	return (0);
 }
@@ -90,12 +90,12 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-/*#include <stdio.h>
+#include <stdio.h>
 #include <limits.h>
 int	main(void)
 {
-	int len = ft_printf("% p\n", 42);
-	int rlen = printf("% p\n", 42);
+	int len = ft_printf(" %04d ", -14);
+	int rlen = printf(" %04d ", -14);
 	printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
-}*/
+}

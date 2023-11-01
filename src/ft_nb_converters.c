@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/31 21:23:05 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:02:26 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,17 @@ static void	put(char *str, int len, t_flags flags)
 	}
 	else if (flags.zero == 1)
 	{
-		ft_put_zeroes(flags.width, len);
-		write(1, str, len);
+		if (str[0] == '-')
+		{
+			write(1, "-", 1);
+			ft_put_zeroes(flags.width, len);
+			write(1, str + 1, len - 1);
+		}
+		else
+		{
+			ft_put_zeroes(flags.width, len);
+			write(1, str, len);
+		}
 	}
 	else
 	{
