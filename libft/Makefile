@@ -49,27 +49,27 @@ BONUS_OBJS	:= ${BONUS:.c=.o}
 INCS		:= -I includes
 
 %.o		: %.c
-	gcc ${INCS} ${CFLAGS} -c $< -o ${<:.c=.o}
+	@gcc ${INCS} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}	: ${OBJS}
-	ar -rc ${NAME} ${OBJS}
+	@ar -rc ${NAME} ${OBJS}
 
 all		: ${NAME}
 
 clean	:
-	rm -f ${OBJS}
-	rm -f ${BONUS_OBJS}
+	@rm -f ${OBJS}
+	@rm -f ${BONUS_OBJS}
 
 fclean	: clean
-	rm -f ${NAME}
-	rm -f a.out
-	rm -f libft.so
+	@rm -f ${NAME}
+	@rm -f a.out
+	@rm -f libft.so
 
 re		: fclean all
 
 bonus	: ${OBJS} ${BONUS_OBJS}
-	ar -rc ${NAME} ${OBJS} ${BONUS_OBJS}
+	@ar -rc ${NAME} ${OBJS} ${BONUS_OBJS}
 
 so:
-	$(CC) $(INCS) -nostartfiles -fPIC $(CFLAGS) $(SRCS) ${BONUS}
-	gcc -nostartfiles -shared -o libft.so $(OBJS) ${BONUS_OBJS}
+	@$(CC) $(INCS) -nostartfiles -fPIC $(CFLAGS) $(SRCS) ${BONUS}
+	@gcc -nostartfiles -shared -o libft.so $(OBJS) ${BONUS_OBJS}

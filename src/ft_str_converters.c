@@ -6,33 +6,48 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:34:33 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/30 14:34:39 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:50:57 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_put_char(va_list args)
+int	ft_put_char(va_list args, t_flags flags)
 {
 	char	c;
 
 	c = va_arg(args, int);
-	write(1, &c, 1);
-	return (0);
+	if (flags.minus == 1)
+	{
+		write(1, &c, 1);
+		ft_put_width(flags.width, 1);
+	}
+	else
+	{
+		ft_put_width(flags.width, 1);
+		write(1, &c, 1);
+	}
+	return (ft_max(flags.width, 1));
 }
 
-int	ft_put_str(va_list args)
+int	ft_put_str(va_list args, t_flags flags)
 {
 	char	*str;
 	int		len;
 
 	str = va_arg(args, char *);
 	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (5);
-	}
+		str = "(null)";
 	len = ft_strlen(str);
-	write(1, str, len);
-	return (len - 1);
+	if (flags.minus == 1)
+	{
+		write(1, str, len);
+		ft_put_width(flags.width, len);
+	}
+	else
+	{
+		ft_put_width(flags.width, len);
+		write(1, str, len);
+	}
+	return (ft_max(flags.width, len));
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nb_converters.c                                 :+:      :+:    :+:   */
+/*   ft_ptr_converter.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/31 21:23:05 by fltorren         ###   ########.fr       */
+/*   Created: 2023/10/31 21:22:52 by fltorren          #+#    #+#             */
+/*   Updated: 2023/10/31 21:32:04 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,61 +16,40 @@ static void	put(char *str, int len, t_flags flags)
 {
 	if (flags.minus == 1)
 	{
+		write(1, "0x", 2);
 		write(1, str, len);
-		ft_put_width(flags.width, len);
+		ft_put_width(flags.width, len + 2);
 	}
 	else if (flags.zero == 1)
 	{
+		write(1, "0x", 2);
 		ft_put_zeroes(flags.width, len);
 		write(1, str, len);
 	}
 	else
 	{
-		ft_put_width(flags.width, len);
+		ft_put_width(flags.width, len + 2);
+		write(1, "0x", 2);
 		write(1, str, len);
 	}
 	free(str);
 }
 
-int	ft_put_int(va_list args, t_flags flags)
+int	ft_put_ptr(va_list args, t_flags flags)
 {
-	int		n;
-	int		len;
-	char	*str;
+	uintptr_t	n;
+	void		*ptr;
+	char		*str;
+	int			len;
 
-	n = va_arg(args, int);
-	str = ft_itoa(n);
-	len = ft_strlen(str);
-	put(str, len, flags);
-	return (ft_max(flags.width, len));
-}
-
-int	ft_put_uint(va_list args, t_flags flags)
-{
-	unsigned int	n;
-	int				len;
-	char			*str;
-
-	n = va_arg(args, unsigned int);
-	str = ft_itoau(n);
-	len = ft_strlen(str);
-	put(str, len, flags);
-	return (ft_max(flags.width, len));
-}
-
-int	ft_put_hex(va_list args, char type, t_flags flags)
-{
-	unsigned int	n;
-	int				len;
-	char			*str;
-
-	n = va_arg(args, unsigned int);
+	ptr = va_arg(args, void *);
+	n = (uintptr_t) ptr;
 	str = ft_itoa_base(n, "0123456789abcdef");
 	if (!str)
 		return (-1);
 	len = ft_strlen(str);
-	if (type == 'X')
-		ft_strtoupper(str);
 	put(str, len, flags);
-	return (ft_max(flags.width, len));
+	if (flags.zero == 1)
+		return (ft_max(flags.width + 2, len + 2));
+	return (ft_max(flags.width, len + 2));
 }
