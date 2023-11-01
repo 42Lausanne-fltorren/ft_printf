@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/01 18:02:26 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:16:32 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	put(char *str, int len, t_flags flags)
 		write(1, str, len);
 		ft_put_width(flags.width, len);
 	}
-	else if (flags.zero == 1)
+	else if (flags.zero == 1 || flags.dot == 1)
 	{
 		if (str[0] == '-')
 		{

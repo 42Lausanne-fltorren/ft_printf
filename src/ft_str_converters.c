@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:34:33 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/31 15:50:57 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:13:11 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ int	ft_put_char(va_list args, t_flags flags)
 	if (flags.minus == 1)
 	{
 		write(1, &c, 1);
-		ft_put_width(flags.width, 1);
+		if (flags.dot == 0)
+			ft_put_width(flags.width, 1);
 	}
 	else
 	{
-		ft_put_width(flags.width, 1);
+		if (flags.dot == 0)
+			ft_put_width(flags.width, 1);
 		write(1, &c, 1);
 	}
-	return (ft_max(flags.width, 1));
+	if (flags.dot == 0)
+		return (ft_max(flags.width, 1));
+	return (1);
 }
 
 int	ft_put_str(va_list args, t_flags flags)
@@ -42,12 +46,16 @@ int	ft_put_str(va_list args, t_flags flags)
 	if (flags.minus == 1)
 	{
 		write(1, str, len);
-		ft_put_width(flags.width, len);
+		if (flags.dot == 0)
+			ft_put_width(flags.width, len);
 	}
 	else
 	{
-		ft_put_width(flags.width, len);
+		if (flags.dot == 0)
+			ft_put_width(flags.width, len);
 		write(1, str, len);
 	}
-	return (ft_max(flags.width, len));
+	if (flags.dot == 0)
+		return (ft_max(flags.width, len));
+	return (len);
 }

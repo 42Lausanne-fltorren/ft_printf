@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/01 15:10:47 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:15:20 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 {
 	int	j;
 
-	*flags = (t_flags){0, 0, 0};
+	*flags = (t_flags){0, 0, 0, 0};
 	j = 0;
 	while (format[i + j] == '-' || format[i + j] == '0' || format[i + j] == '.')
 	{
 		if (format[i + j] == '-')
 			flags->minus = 1;
-		else if (format[i + j] == '0' || format[i + j] == '.')
+		else if (format[i + j] == '0')
 			flags->zero = 1;
+		else if (format[i + j] == '.')
+			flags->dot = 1;
 		j++;
 	}
 	if (format[i + j] == '*')
@@ -94,8 +96,8 @@ int	ft_printf(const char *format, ...)
 #include <limits.h>
 int	main(void)
 {
-	int len = ft_printf(" %04d ", -14);
-	int rlen = printf(" %04d ", -14);
+	int len = ft_printf(" %.3d \n", -1);
+	int rlen = printf(" %.3d \n", -1);
 	printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
 }
