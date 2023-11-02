@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 10:56:27 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:00:09 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 
 	*flags = (t_flags){0, 0, 0, 0, 0};
 	j = 0;
-	j += ft_get_width(args, format, i + j, flags);
+	if (format[i + j] != '0')
+		j += ft_get_width(args, format, i + j, flags);
 	while (format[i + j] == '-' || format[i + j] == '0' || format[i + j] == '.')
 	{
 		if (format[i + j] == '-')
@@ -126,8 +127,8 @@ int	ft_printf(const char *format, ...)
 #include <limits.h>
 int	main(void)
 {
-	int len = ft_printf("%7.5s\n", "yolo");
-	int rlen = printf("%7.*s\n", 5, "yolo");
+	int len = ft_printf(" %04d ", 9);
+	int rlen = printf(" %04d ", 9);
 	printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
 }*/
