@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 10:42:32 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:23:25 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	put(char *str, int len, t_flags *flags)
 	{
 		if (neg)
 			write(1, "-", 1);
-		ft_put_zeroes(flags->width + flags->precision, len);
+		ft_put_width(flags->width, len + flags->precision);
+		ft_put_zeroes(flags->precision, len);
 		write(1, str + neg, len - neg);
 	}
 	else
@@ -49,7 +50,9 @@ int	ft_put_int(va_list args, t_flags flags)
 	str = ft_itoa(n);
 	len = ft_strlen(str);
 	put(str, len, &flags);
-	return (ft_max(flags.width + flags.precision, len));
+	if (len < flags.precision)
+		len = flags.precision;
+	return (ft_max(flags.width, len));
 }
 
 int	ft_put_uint(va_list args, t_flags flags)
@@ -62,7 +65,7 @@ int	ft_put_uint(va_list args, t_flags flags)
 	str = ft_itoau(n);
 	len = ft_strlen(str);
 	put(str, len, &flags);
-	return (ft_max(flags.width + flags.precision, len));
+	return (ft_max(flags.width, len));
 }
 
 int	ft_put_hex(va_list args, char type, t_flags flags)
@@ -79,5 +82,5 @@ int	ft_put_hex(va_list args, char type, t_flags flags)
 	if (type == 'X')
 		ft_strtoupper(str);
 	put(str, len, &flags);
-	return (ft_max(flags.width + flags.precision, len));
+	return (ft_max(flags.width, len));
 }
