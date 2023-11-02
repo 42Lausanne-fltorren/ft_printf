@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 11:26:22 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:33:47 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static void	put(char *str, int len, t_flags *flags)
 		if (neg)
 			write(1, "-", 1);
 		ft_put_width(flags->width, len + flags->precision);
-		ft_put_zeroes(flags->width, ft_max(len, flags->precision));
+		if (flags->width)
+			ft_put_zeroes(flags->width, len);
+		else
+			ft_put_zeroes(flags->precision, len);
 		write(1, str + neg, len - neg);
 	}
 	else
