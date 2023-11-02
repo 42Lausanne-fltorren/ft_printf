@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:34:33 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 11:07:19 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:13:00 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int	ft_put_str(va_list args, t_flags flags)
 	if (flags.minus == 1)
 	{
 		write(1, str, len);
-		if (flags.dot == 0)
-			ft_put_width(flags.width, len);
+		ft_put_width(flags.width, len);
 	}
 	else
 	{
