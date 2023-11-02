@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:46:22 by fltorren          #+#    #+#             */
-/*   Updated: 2023/10/31 16:01:32 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:40:58 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,11 @@ char	*ft_itoa_base(unsigned long n, char *base)
 		n /= base_len;
 	}
 	return (str);
+}
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }

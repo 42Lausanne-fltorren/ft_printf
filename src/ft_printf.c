@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 09:30:44 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:58:45 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 {
 	int	j;
 
-	*flags = (t_flags){0, 0, 0, 0};
+	*flags = (t_flags){0, 0, 0, 0, 0};
 	j = 0;
 	while (format[i + j] == '-' || format[i + j] == '0' || format[i + j] == '.')
 	{
@@ -57,8 +57,16 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 	}
 	else if (format[i + j] >= '0' && format[i + j] <= '9')
 	{
-		flags->width = ft_atoi(&format[i + j]);
-		j += ft_get_digits(flags->width, 10);
+		if (flags->dot == 1)
+		{
+			flags->precision = ft_atoi(&format[i + j]);
+			j += ft_get_digits(flags->precision, 10);
+		}
+		else
+		{
+			flags->width = ft_atoi(&format[i + j]);
+			j += ft_get_digits(flags->width, 10);
+		}
 	}
 	return (j);
 }
@@ -92,12 +100,15 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-/*#include <stdio.h>
+#include <stdio.h>
 #include <limits.h>
 int	main(void)
 {
-	int len = ft_printf(" %.3d \n", -1);
-	int rlen = printf(" %.3d \n", -1);
+	int len = ft_printf(" %.10s \n", "-");
+	int rlen = printf(" %.10s \n", "-");
 	printf("len = %d, rlen = %d\n", len, rlen);
+	// len = ft_printf(" %05d \n", -10);
+	// rlen = printf(" %05d \n", -10);
+	// printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
-}*/
+}

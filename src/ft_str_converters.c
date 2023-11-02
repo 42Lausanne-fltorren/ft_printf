@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:34:33 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/01 18:13:11 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:00:11 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	ft_put_str(va_list args, t_flags flags)
 	if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
+	if (flags.dot)
+		len = ft_min(len, flags.precision);
 	if (flags.minus == 1)
 	{
 		write(1, str, len);
@@ -51,8 +53,7 @@ int	ft_put_str(va_list args, t_flags flags)
 	}
 	else
 	{
-		if (flags.dot == 0)
-			ft_put_width(flags.width, len);
+		ft_put_width(flags.width, len);
 		write(1, str, len);
 	}
 	if (flags.dot == 0)

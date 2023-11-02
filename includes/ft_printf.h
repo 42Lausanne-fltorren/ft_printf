@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:53 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/01 18:07:16 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:41:54 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_flags
 	int		zero;
 	int		width;
 	int		dot;
+	int		precision;
 }				t_flags;
 
 int		ft_printf(const char *format, ...);
@@ -45,4 +46,5 @@ void	ft_put_width(int width, int len);
 void	ft_put_zeroes(int width, int len);
 
 int		ft_max(int a, int b);
+int		ft_min(int a, int b);
 #endif
