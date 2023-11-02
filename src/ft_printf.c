@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 11:13:29 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:19:23 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 	j = 0;
 	while (is_flag(format[i + j]))
 	{
-		while (format[i + j] == '-' || format[i + j] == '0'
+		if (format[i + j] == '-' || format[i + j] == '0'
 			|| format[i + j] == '.')
 		{
 			if (format[i + j] == '-')
@@ -93,7 +93,7 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 				flags->dot = 1;
 			j++;
 		}
-		if (format[i + j - 1] == '.')
+		if (flags->dot)
 			j += ft_get_precision(args, format, i + j, flags);
 		else
 			j += ft_get_width(args, format, i + j, flags);
@@ -134,8 +134,8 @@ int	ft_printf(const char *format, ...)
 #include <limits.h>
 int	main(void)
 {
-	int len = ft_printf("%-7.5s", "yolo");
-	int rlen = printf("%-7.5s", "yolo");
+	int len = ft_printf("%.03s\n", "hi");
+	int rlen = printf("%.03s\n", "hi");
 	printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
 }*/
