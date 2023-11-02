@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 10:42:05 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:56:27 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,48 @@ int	ft_put_type(va_list args, const char *format, int i, t_flags flags)
 	return (0);
 }
 
+int	ft_get_precision(va_list args, const char *format, int i, t_flags *flags)
+{
+	int	j;
+
+	j = 0;
+	if (format[i + j] == '*')
+	{
+		flags->precision = va_arg(args, int);
+		j++;
+	}
+	else if (format[i + j] >= '0' && format[i + j] <= '9')
+	{
+		flags->precision = ft_atoi(&format[i + j]);
+		j += ft_get_digits(flags->precision, 10);
+	}
+	return (j);
+}
+
+int	ft_get_width(va_list args, const char *format, int i, t_flags *flags)
+{
+	int	j;
+
+	j = 0;
+	if (format[i + j] == '*')
+	{
+		flags->width = va_arg(args, int);
+		j++;
+	}
+	else if (format[i + j] >= '0' && format[i + j] <= '9')
+	{
+		flags->width = ft_atoi(&format[i + j]);
+		j += ft_get_digits(flags->width, 10);
+	}
+	return (j);
+}
 int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 {
 	int	j;
 
 	*flags = (t_flags){0, 0, 0, 0, 0};
 	j = 0;
+	j += ft_get_width(args, format, i + j, flags);
 	while (format[i + j] == '-' || format[i + j] == '0' || format[i + j] == '.')
 	{
 		if (format[i + j] == '-')
@@ -50,24 +86,10 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 			flags->dot = 1;
 		j++;
 	}
-	if (format[i + j] == '*')
-	{
-		flags->width = va_arg(args, int);
-		j++;
-	}
-	else if (format[i + j] >= '0' && format[i + j] <= '9')
-	{
-		if (flags->dot == 1)
-		{
-			flags->precision = ft_atoi(&format[i + j]);
-			j += ft_get_digits(flags->precision, 10);
-		}
-		else
-		{
-			flags->width = ft_atoi(&format[i + j]);
-			j += ft_get_digits(flags->width, 10);
-		}
-	}
+	if (flags->dot == 1)
+		j += ft_get_precision(args, format, i + j, flags);
+	else
+		j += ft_get_width(args, format, i + j, flags);
 	return (j);
 }
 
@@ -100,12 +122,12 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-#include <stdio.h>
+/*#include <stdio.h>
 #include <limits.h>
 int	main(void)
 {
-	int len = ft_printf(" %.1d \n", 0);
-	int rlen = printf(" %.1d \n", 0);
+	int len = ft_printf("%7.5s\n", "yolo");
+	int rlen = printf("%7.*s\n", 5, "yolo");
 	printf("len = %d, rlen = %d\n", len, rlen);
 	return (0);
-}
+}*/
