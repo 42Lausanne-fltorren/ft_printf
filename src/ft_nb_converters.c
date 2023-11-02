@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 15:20:44 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:26:55 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_put(char *str, int len, t_flags *flags)
 	int	neg;
 
 	neg = str[0] == '-';
-	if (flags->precision == 0 && str[0] == '0')
+	if (flags->dot && str[0] == '0')
 		len = 0;
 	if (flags->minus)
 		ft_write(str, len, *flags, neg);
