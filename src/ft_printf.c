@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 15:57:46 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:01:30 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	ft_get_width(va_list args, const char *format, int i, t_flags *flags)
 
 int	is_flag(char c)
 {
-	if (c == '-' || c == '0' || c == '.' || c == '*' || (c >= '0' && c <= '9'))
+	if (c == '-' || c == '0' || c == '.' || c == '*' ||
+		(c >= '0' && c <= '9') || c == ' ' || c == '#' || c == '+')
 		return (1);
 	return (0);
 }
@@ -83,7 +84,9 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 	while (is_flag(format[i + j]))
 	{
 		if (format[i + j] == '-' || format[i + j] == '0'
-			|| format[i + j] == '.')
+			|| format[i + j] == '.' || format[i + j] == '*'
+			|| format[i + j] == ' ' || format[i + j] == '#'
+			|| format[i + j] == '+')
 		{
 			if (format[i + j] == '-')
 				flags->minus = 1;
@@ -134,8 +137,8 @@ int	ft_printf(const char *format, ...)
 // #include <limits.h>
 // int	main(void)
 // {
-// 	int len = ft_printf("!%010.d!\n", -8473);
-// 	int rlen = printf("!%010.d!\n", -8473);
+// 	int len = ft_printf("<------------>% 18.5d<------------>\n", -0);
+// 	int rlen = printf("<------------>% 18.5d<------------>\n", -0);
 // 	printf("len = %d, rlen = %d\n", len, rlen);
 // 	return (0);
 // }
