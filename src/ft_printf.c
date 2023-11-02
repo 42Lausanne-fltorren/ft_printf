@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 11:05:03 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:06:50 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	ft_put_type(va_list args, const char *format, int i, t_flags flags)
 	else if (format[i] == 'p')
 		return (ft_put_ptr(args, flags));
 	else if (format[i] == '%')
-	{
-		write(1, "%", 1);
-		return (1);
-	}
+		return (ft_put_perc(flags));
 	return (0);
 }
 
@@ -96,7 +93,7 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 				flags->dot = 1;
 			j++;
 		}
-		if (flags->dot == 1)
+		if (format[i + j - 1] == '.')
 			j += ft_get_precision(args, format, i + j, flags);
 		else
 			j += ft_get_width(args, format, i + j, flags);
