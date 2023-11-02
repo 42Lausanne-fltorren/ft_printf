@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 15:26:55 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:35:16 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	ft_write(char *str, int len, t_flags flags, int neg)
 {
-	write(1, "-", neg);
 	ft_put_zeroes(flags.precision, len - neg);
 	write(1, str + neg, len - neg);
 }
@@ -26,16 +25,18 @@ static int	ft_put(char *str, int len, t_flags *flags)
 	neg = str[0] == '-';
 	if (flags->dot && str[0] == '0')
 		len = 0;
+	write(1, "-", neg && flags->minus);
 	if (flags->minus)
 		ft_write(str, len, *flags, neg);
-	if (flags->zero && !flags->minus)
-		ft_put_zeroes(flags->width, ft_max(len, flags->precision) + neg);
-	else
+	if (!flags->zero || flags->minus)
 		ft_put_width(flags->width, ft_max(len, flags->precision));
+	write(1, "-", neg && !flags->minus);
+	if (flags->zero && !flags->minus)
+		ft_put_zeroes(flags->width, ft_max(len, flags->precision));
 	if (!flags->minus)
 		ft_write(str, len, *flags, neg);
 	free(str);
-	return (ft_max(flags->width, len));
+	return (ft_max(flags->width, ft_max(len, flags->precision) + neg));
 }
 
 int	ft_put_int(va_list args, t_flags flags)
