@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 11:03:14 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:05:03 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 	j = 0;
 	while (is_flag(format[i + j]))
 	{
-		j += ft_get_width(args, format, i + j, flags);
 		while (format[i + j] == '-' || format[i + j] == '0'
 			|| format[i + j] == '.')
 		{
