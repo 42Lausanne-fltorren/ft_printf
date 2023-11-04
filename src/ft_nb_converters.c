@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 16:28:14 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:43:40 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,32 @@ static void	ft_write(char *str, int len, t_flags flags, int neg)
 	write(1, str + neg, len - neg);
 }
 
-static int	ft_put(char *str, int len, t_flags *flags)
+static int	ft_put(char *str, t_flags *flags)
 {
-	int	neg;
+	char	*tmp;
+	int		len;
 
-	neg = str[0] == '-';
-	if (flags->dot && str[0] == '0')
-		len = 0;
-	write(1, "-", neg && flags->minus);
-	write(1, " ", !neg && flags->space && !flags->plus && flags->minus);
-	write(1, "+", flags->plus && !neg && flags->minus);
-	if (flags->minus)
-		ft_write(str, len, *flags, neg);
-	if (!flags->zero || flags->minus || flags->dot)
-		ft_put_width(flags->width, ft_max(len, flags->precision + neg) + !neg * (flags->plus || flags->space));
-	write(1, "-", neg && !flags->minus);
-	write(1, " ", !neg && flags->space && !flags->plus && !flags->minus);
-	write(1, "+", flags->plus && !neg && !flags->minus);
-	if (flags->zero && !flags->minus && !flags->dot)
+	tmp = ft_strdup(str);
+	if (flags->plus && str[0] != '-')
+		ft_reassign(&tmp, ft_strjoin("+", str));
+	else if (flags->space && str[0] != '-')
+		ft_reassign(&tmp, ft_strjoin(" ", str));
+	if (flags->dot && !flags->precision && str[0] == '0')
+		ft_reassign(&tmp, ft_strdup(""));
+	len = ft_strlen(tmp);
+	if (flags->dot && flags->precision > len)
+		ft_reassign(&tmp, ft_join_zeroes(str, flags->precision - len));
+	len = ft_strlen(tmp);
+	if (flags->width > len)
 	{
-		ft_put_zeroes(flags->width, ft_max(len, flags->precision));
+		if (flags->minus || !(flags->zero && !flags->dot))
+			ft_reassign(&tmp, ft_join_spaces(tmp, flags->width - len));
+		else
+			ft_reassign(&tmp, ft_join_zeroes(tmp, flags->width - len));
 	}
-	if (!flags->minus)
-		ft_write(str, len, *flags, neg);
-	free(str);
-	return (ft_max(flags->width, ft_max(len, flags->precision + neg) + !neg * (flags->plus || flags->space)));
+	ft_putstr_fd(tmp, 1);
+	free(tmp);
+	return (len);
 }
 
 int	ft_put_int(va_list args, t_flags flags)
@@ -54,7 +55,7 @@ int	ft_put_int(va_list args, t_flags flags)
 	n = va_arg(args, int);
 	str = ft_itoa(n);
 	len = ft_strlen(str);
-	return (ft_put(str, len, &flags));
+	return (ft_put(str, &flags));
 }
 
 int	ft_put_uint(va_list args, t_flags flags)
@@ -66,7 +67,7 @@ int	ft_put_uint(va_list args, t_flags flags)
 	n = va_arg(args, unsigned int);
 	str = ft_itoau(n);
 	len = ft_strlen(str);
-	return (ft_put(str, len, &flags));
+	return (ft_put(str, &flags));
 }
 
 int	ft_put_hex(va_list args, char type, t_flags flags)
@@ -82,5 +83,5 @@ int	ft_put_hex(va_list args, char type, t_flags flags)
 	len = ft_strlen(str);
 	if (type == 'X')
 		ft_strtoupper(str);
-	return (ft_put(str, len, &flags));
+	return (ft_put(str, &flags));
 }

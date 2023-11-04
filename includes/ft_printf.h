@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:53 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 16:09:26 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:43:06 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ char	*ft_itoa_base(unsigned long n, char *base);
 char	*ft_strtoupper(char *str);
 void	ft_put_width(int width, int len);
 void	ft_put_zeroes(int width, int len);
+
+void	ft_reassign(char **str, char *new);
+char	*ft_join_spaces(char *str, int n);
+char	*ft_join_zeroes(char *str, int n);
 
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
