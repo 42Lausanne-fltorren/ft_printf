@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 16:10:45 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:19:36 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,22 @@ int	is_flag(char c)
 	return (0);
 }
 
+void	ft_get_flag(const char c, t_flags *flags)
+{
+	if (c == '-')
+		flags->minus = 1;
+	else if (c == '0')
+		flags->zero = 1;
+	else if (c == '.')
+		flags->dot = 1;
+	else if (c == ' ')
+		flags->space = 1;
+	else if (c == '#')
+		flags->alt = 1;
+	else if (c == '+')
+		flags->plus = 1;
+}
+
 int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 {
 	int	j;
@@ -88,12 +104,7 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 			|| format[i + j] == ' ' || format[i + j] == '#'
 			|| format[i + j] == '+')
 		{
-			if (format[i + j] == '-')
-				flags->minus = 1;
-			else if (format[i + j] == '0')
-				flags->zero = 1;
-			else if (format[i + j] == '.')
-				flags->dot = 1;
+			ft_get_flag(format[i + j], flags);
 			j++;
 		}
 		if (flags->dot && flags->precision == 0 && format[i + j] != '0')
@@ -133,18 +144,18 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-#include <stdio.h>
-#include <limits.h>
-int	main(void)
-{
-	int len;
-	int rlen;
+// #include <stdio.h>
+// #include <limits.h>
+// int	main(void)
+// {
+// 	int len;
+// 	int rlen;
 
-	len = ft_printf("%+x\n", 42);
-	rlen = printf("%+x\n", 42);
-	printf("len = %d, rlen = %d\n", len, rlen);
-	len = ft_printf("%5.c\n", 'c');
-	rlen = printf("%5.c\n", 'c');
-	printf("len = %d, rlen = %d\n", len, rlen);
-	return (0);
-}
+// 	len = ft_printf("%+05d\n", 42);
+// 	rlen = printf("%+05d\n", 42);
+// 	printf("len = %d, rlen = %d\n", len, rlen);
+// 	// len = ft_printf("%5.c\n", 'c');
+// 	// rlen = printf("%5.c\n", 'c');
+// 	// printf("len = %d, rlen = %d\n", len, rlen);
+// 	return (0);
+// }

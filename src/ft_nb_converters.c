@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 16:10:24 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:18:54 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,24 @@ static int	ft_put(char *str, int len, t_flags *flags)
 	if (flags->dot && str[0] == '0')
 		len = 0;
 	write(1, "-", neg && flags->minus);
+	write(1, " ", !neg && flags->space && !flags->plus && flags->minus);
+	write(1, "+", flags->plus && !neg && flags->minus);
 	if (flags->minus)
 		ft_write(str, len, *flags, neg);
 	if (!flags->zero || flags->minus || flags->dot)
 		ft_put_width(flags->width, ft_max(len, flags->precision + neg));
 	write(1, "-", neg && !flags->minus);
+	write(1, " ", !neg && flags->space && !flags->plus && !flags->minus);
+	write(1, "+", flags->plus && !neg && !flags->minus);
 	if (flags->zero && !flags->minus && !flags->dot)
 	{
 		ft_put_zeroes(flags->width, ft_max(len, flags->precision));
 	}
 	if (!flags->minus)
-		ft_write(str, len, *flags, neg);
+		ft_write(str, len, *flags, neg || flags->plus || flags->space);
 	free(str);
-	return (ft_max(flags->width, ft_max(len, flags->precision + neg)));
+	return (ft_max(flags->width, ft_max(len, flags->precision + (neg
+					|| flags->plus || flags->space))));
 }
 
 int	ft_put_int(va_list args, t_flags flags)
@@ -46,16 +51,9 @@ int	ft_put_int(va_list args, t_flags flags)
 	int		n;
 	int		len;
 	char	*str;
-	char	*tmp;
 
 	n = va_arg(args, int);
 	str = ft_itoa(n);
-	if (flags.plus && n >= 0)
-	{
-		tmp = str;
-		str = ft_strjoin("+", str);
-		free(tmp);
-	}
 	len = ft_strlen(str);
 	return (ft_put(str, len, &flags));
 }
@@ -65,16 +63,9 @@ int	ft_put_uint(va_list args, t_flags flags)
 	unsigned int	n;
 	int				len;
 	char			*str;
-	char			*tmp;
 
 	n = va_arg(args, unsigned int);
 	str = ft_itoau(n);
-	if (flags.plus)
-	{
-		tmp = str;
-		str = ft_strjoin("+", str);
-		free(tmp);
-	}
 	len = ft_strlen(str);
 	return (ft_put(str, len, &flags));
 }
