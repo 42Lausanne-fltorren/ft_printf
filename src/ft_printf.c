@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 15:47:49 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:59:23 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int	ft_get_width(va_list args, const char *format, int i, t_flags *flags)
 
 int	is_flag(char c)
 {
-	if (c == '-' || c == '0' || c == '.' || c == '*' ||
-		(c >= '0' && c <= '9') || c == ' ' || c == '#' || c == '+')
+	if (c == '-' || c == '0' || c == '.' || c == '*'
+		|| (c >= '0' && c <= '9') || c == ' ' || c == '#' || c == '+')
 		return (1);
 	return (0);
 }
@@ -94,11 +94,11 @@ int	ft_get_flags(va_list args, const char *format, int i, t_flags *flags)
 				flags->zero = 1;
 			else if (format[i + j] == '.')
 				flags->dot = 1;
-			j++;
 		}
-		if (flags->dot)
+		j++;
+		if (flags->dot && flags->precision == 0)
 			j += ft_get_precision(args, format, i + j, flags);
-		else
+		else if (flags->width == 0)
 			j += ft_get_width(args, format, i + j, flags);
 	}
 	return (j);
@@ -140,11 +140,11 @@ int	ft_printf(const char *format, ...)
 // 	int len;
 // 	int rlen;
 
-// 	len = ft_printf("<------------>% 18.5d<------------>\n", -0);
-// 	rlen = printf("<------------>% 18.5d<------------>\n", -0);
+// 	len = ft_printf("%0019.4d\n", 42);
+// 	rlen = printf("%0019.4d\n", 42);
 // 	printf("len = %d, rlen = %d\n", len, rlen);
-// 	len = ft_printf("%08.5d\n", 34);
-// 	rlen = printf("%08.5d\n", 34);
-// 	printf("len = %d, rlen = %d\n", len, rlen);
+// 	// len = ft_printf("%08.5d\n", 34);
+// 	// rlen = printf("%08.5d\n", 34);
+// 	// printf("len = %d, rlen = %d\n", len, rlen);
 // 	return (0);
 // }
