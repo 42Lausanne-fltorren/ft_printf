@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 16:04:39 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:06:41 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,18 +133,18 @@ int	ft_printf(const char *format, ...)
 	return (len);
 }
 
-#include <stdio.h>
-#include <limits.h>
-int	main(void)
-{
-	int len;
-	int rlen;
+// #include <stdio.h>
+// #include <limits.h>
+// int	main(void)
+// {
+// 	int len;
+// 	int rlen;
 
-	len = ft_printf("%0019.4d\n", 42);
-	rlen = printf("%0019.4d\n", 42);
-	printf("len = %d, rlen = %d\n", len, rlen);
-	len = ft_printf("%5.c\n", 'c');
-	rlen = printf("%5.c\n", 'c');
-	printf("len = %d, rlen = %d\n", len, rlen);
-	return (0);
-}
+// 	len = ft_printf("%0019.4d\n", 42);
+// 	rlen = printf("%0019.4d\n", 42);
+// 	printf("len = %d, rlen = %d\n", len, rlen);
+// 	len = ft_printf("%5.c\n", 'c');
+// 	rlen = printf("%5.c\n", 'c');
+// 	printf("len = %d, rlen = %d\n", len, rlen);
+// 	return (0);
+// }
