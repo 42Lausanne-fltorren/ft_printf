@@ -7,7 +7,7 @@ ARFLAGS 		=	rcs
 RM				=	rm -rf
 
 OUT_DIR			=	build
-SRCS			=	ft_math.c ft_nb_converters.c ft_printf.c ft_ptr_converter.c ft_str_converters.c ft_utils.c
+SRCS			=	ft_math.c ft_nb_converters.c ft_printf.c ft_ptr_converter.c ft_str_converters.c ft_utils.c ft_strutils.c
 SRC_DIR			=	./src
 OBJS			=	$(SRCS:%.c=$(OUT_DIR)/%.o)
 

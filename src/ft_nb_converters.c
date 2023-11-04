@@ -6,17 +6,11 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 18:01:24 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 16:43:40 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:44:56 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void	ft_write(char *str, int len, t_flags flags, int neg)
-{
-	ft_put_zeroes(flags.precision, len - neg);
-	write(1, str + neg, len - neg);
-}
 
 static int	ft_put(char *str, t_flags *flags)
 {
