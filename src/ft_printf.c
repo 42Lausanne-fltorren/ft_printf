@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 16:01:30 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:47:49 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,14 @@ int	ft_printf(const char *format, ...)
 // #include <limits.h>
 // int	main(void)
 // {
-// 	int len = ft_printf("<------------>% 18.5d<------------>\n", -0);
-// 	int rlen = printf("<------------>% 18.5d<------------>\n", -0);
+// 	int len;
+// 	int rlen;
+
+// 	len = ft_printf("<------------>% 18.5d<------------>\n", -0);
+// 	rlen = printf("<------------>% 18.5d<------------>\n", -0);
+// 	printf("len = %d, rlen = %d\n", len, rlen);
+// 	len = ft_printf("%08.5d\n", 34);
+// 	rlen = printf("%08.5d\n", 34);
 // 	printf("len = %d, rlen = %d\n", len, rlen);
 // 	return (0);
 // }
