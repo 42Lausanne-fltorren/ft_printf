@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:01 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/04 16:22:29 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:28:26 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,8 @@ int	ft_printf(const char *format, ...)
 // 	int len;
 // 	int rlen;
 
-// 	len = ft_printf("% d\n", 42);
-// 	rlen = printf("% d\n", 42);
+// 	len = ft_printf(".% 2d.\n", 0);
+// 	rlen = printf(".% 2d.\n", 0);
 // 	printf("len = %d, rlen = %d\n", len, rlen);
 // 	// len = ft_printf("%5.c\n", 'c');
 // 	// rlen = printf("%5.c\n", 'c');
