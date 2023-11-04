@@ -6,7 +6,7 @@
 /*   By: fltorren <fltorren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:44:53 by fltorren          #+#    #+#             */
-/*   Updated: 2023/11/02 11:07:36 by fltorren         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:09:26 by fltorren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ typedef struct s_flags
 	int		width;
 	int		dot;
 	int		precision;
+	int		plus;
+	int		space;
+	int		alt;
 }				t_flags;
 
 int		ft_printf(const char *format, ...);
